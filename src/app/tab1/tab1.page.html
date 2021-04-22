@@ -17,64 +17,76 @@
         <ion-img src="/assets/img/visa.jpeg" class="small"></ion-img>
       </ion-col>
     </ion-row>
-    <form [formGroup]='formulario'>
-      <ion-row>
-        <ion-col>
-          <ion-text>Número de tarjeta:</ion-text>
-          <ion-input formControlName="numTarjeta"></ion-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-text>Expira:</ion-text>
-          <ion-input type="text" placeholder="MM/AA" class="expira" formControlName="expira"></ion-input>
-        </ion-col>
-        <ion-col>
+    <form [formGroup]='formulario' (ngSumbit)="onSumnit(formulario.value)">
+      <div formGroupName="grupoDatos">
+        <ion-row>
+          <ion-col>
+            <ion-text>Número de tarjeta:</ion-text>
+            <ion-input formControlName="numTarjeta"></ion-input>
+          </ion-col>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.numTarjeta">
+              <div class="error-message"
+                *ngIf="formulario.get('grupoDatos').get('numTarjeta').hasError(validation.type) & 
+              formulario.get('grupoDatos').get('numTarjeta').dity || formulario.get('grupoDatos').get('numTarjeta').touched">
+                <ion-icon name="information-circle-outline"></ion-icon> {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
+        </ion-row>
 
-        </ion-col>
-        <ion-col>
-          <ion-text>CCV:</ion-text>
-          <ion-input type="password" maxlength="3" class="ccv" formControlName="ccv"></ion-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-text>Tipo de tarjeta: </ion-text>
-          <ion-select formControlName="tipo">
-            <ion-select-option *ngFor="let tipoTarjeta of tiposTarjeta | keyvalue">{{tipoTarjeta.key}}
-            </ion-select-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-text>Expira:</ion-text>
+            <ion-input type="text" placeholder="MM/AA" class="expira" formControlName="expira"></ion-input>
+          </ion-col>
+          <ion-col>
 
-        </ion-col>
-        <ion-col>
-          <ion-text style="float: left">C.Prom.: </ion-text>
-          <br>
-          <ion-checkbox formControlName="clientePromocional"></ion-checkbox>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
+          </ion-col>
+          <ion-col>
+            <ion-text>CCV:</ion-text>
+            <ion-input type="password" maxlength="3" class="ccv" formControlName="ccv"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-text>Tipo de tarjeta: </ion-text>
+            <ion-select formControlName="tipo">
+              <ion-select-option *ngFor="let tipoTarjeta of tiposTarjeta | keyvalue">{{tipoTarjeta.key}}
+              </ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col>
 
-        </ion-col>
-        <ion-col>
+          </ion-col>
+          <ion-col>
+            <ion-text style="float: left">C.Prom.: </ion-text>
+            <br>
+            <ion-checkbox formControlName="clientePromocional"></ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
 
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
+          </ion-col>
+          <ion-col>
 
-        </ion-col>
-        <ion-col>
-          <ion-button color="danger" class="botonBorrar" (click)="clickBorrar()">Borrar</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
 
-        </ion-col>
-        <ion-col>
-          <ion-button color="success" class="botonAceptar" [disabled]="!formulario.valid" (click)="clickAceptar()">
-            Aceptar</ion-button>
-        </ion-col>
-      </ion-row>
+          </ion-col>
+          <ion-col>
+            <ion-button color="danger" class="botonBorrar" (click)="clickBorrar()">Borrar</ion-button>
+
+          </ion-col>
+          <ion-col>
+            <ion-button color="success" class="botonAceptar" [disabled]="!formulario.valid" (click)="clickAceptar()">
+              Aceptar</ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
     </form>
   </ion-grid>
 </ion-content>
