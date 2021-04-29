@@ -64,6 +64,7 @@ export class Tab1Page implements OnInit {
       return this.validarGrupoDatos(formGroup);
     });
   }
+
   validarGrupoDatos(fg: FormGroup) {
     return null;
   }

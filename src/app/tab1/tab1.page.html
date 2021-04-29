@@ -24,6 +24,7 @@
             <ion-text>Número de tarjeta:</ion-text>
             <ion-input formControlName="numTarjeta"></ion-input>
           </ion-col>
+          <!-- Validación número de tarjeta -->
           <div class="validation-errors">
             <ng-container *ngFor="let validation of validation_messages.numTarjeta">
               <div class="error-message"
@@ -35,11 +36,22 @@
           </div>
         </ion-row>
 
+        <!-- Segunda fila-->
         <ion-row>
           <ion-col>
             <ion-text>Expira:</ion-text>
             <ion-input type="text" placeholder="MM/AA" class="expira" formControlName="expira"></ion-input>
           </ion-col>
+          <!-- Validación expira-->
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.expira">
+              <div class="error-message"
+                *ngIf="formulario.get('grupoDatos').get('expira').hasError(validation.type) & 
+              formulario.get('grupoDatos').get('expira').dity || formulario.get('grupoDatos').get('expira').touched">
+                <ion-icon name="information-circle-outline"></ion-icon> {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
           <ion-col>
 
           </ion-col>
@@ -47,7 +59,18 @@
             <ion-text>CCV:</ion-text>
             <ion-input type="password" maxlength="3" class="ccv" formControlName="ccv"></ion-input>
           </ion-col>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.expira">
+              <div class="error-message"
+                *ngIf="formulario.get('grupoDatos').get('password').hasError(validation.type) & 
+              formulario.get('grupoDatos').get('password').dity || formulario.get('grupoDatos').get('password').touched">
+                <ion-icon name="information-circle-outline"></ion-icon> {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
         </ion-row>
+
+        <!-- Tercera fila -->
         <ion-row>
           <ion-col>
             <ion-text>Tipo de tarjeta: </ion-text>
@@ -56,6 +79,15 @@
               </ion-select-option>
             </ion-select>
           </ion-col>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.expira">
+              <div class="error-message"
+                *ngIf="formulario.get('grupoDatos').get('tipo').hasError(validation.type) & 
+              formulario.get('grupoDatos').get('tipo').dity || formulario.get('grupoDatos').get('tipo').touched">
+                <ion-icon name="information-circle-outline"></ion-icon> {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
           <ion-col>
 
           </ion-col>
